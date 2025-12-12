@@ -63,13 +63,13 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/utf-8</AdditionalOptions>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\deps\pthreads-w32\Pre-built.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\deps-msvc\pthreads-w32\Pre-built.2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Ws2_32.lib;pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\deps\pthreads-w32\Pre-built.2\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\deps-msvc\pthreads-w32\Pre-built.2\lib\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -82,7 +82,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/utf-8</AdditionalOptions>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\deps\pthreads-w32\Pre-built.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;$(ProjectDir)..\..\src\common;$(ProjectDir)..\..\deps-msvc\pthreads-w32\Pre-built.2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,7 +90,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Ws2_32.lib;pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\deps\pthreads-w32\Pre-built.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\deps-msvc\pthreads-w32\Pre-built.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -123,6 +123,7 @@
     <ClInclude Include="..\..\src\clogger\loggermgr.h" />
     <ClInclude Include="..\..\src\clogger\rollingfile.h" />
     <ClInclude Include="..\..\src\clogger\shmmaplog.h" />
+    <ClInclude Include="..\..\src\common\bo.h" />
     <ClInclude Include="..\..\src\common\cpu_pause.h" />
     <ClInclude Include="..\..\src\common\cstrbuf.h" />
     <ClInclude Include="..\..\src\common\emerglog.h" />
@@ -134,6 +135,7 @@
     <ClInclude Include="..\..\src\common\platforms.h" />
     <ClInclude Include="..\..\src\common\randctx.h" />
     <ClInclude Include="..\..\src\common\readconf.h" />
+    <ClInclude Include="..\..\src\common\refcobj.h" />
     <ClInclude Include="..\..\src\common\ringbuf.h" />
     <ClInclude Include="..\..\src\common\ringbufst.h" />
     <ClInclude Include="..\..\src\common\rtclock.h" />

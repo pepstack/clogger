@@ -131,6 +131,9 @@
     <ClInclude Include="..\..\src\clogger\clogger_helper.h">
       <Filter>clogger</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\common\bo.h">
+      <Filter>common</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\common\cpu_pause.h">
       <Filter>common</Filter>
     </ClInclude>
@@ -162,6 +165,9 @@
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\common\readconf.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\refcobj.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\common\ringbuf.h">

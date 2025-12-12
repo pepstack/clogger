@@ -40,7 +40,8 @@ IGNORE_DIRS=(
     "build"         # 构建目录
     "dist"          # 分发目录
     "target"        # Maven构建目录
-    "deps"          # 依赖的库路径
+    "deps-msvc"     # msvc 编译依赖的库路径
+    "deps-mingw64"  # mingw64 编译依赖的库路径
     "packages"      # 备份软件包路径
     "logs"          # 日志文件路径
 )

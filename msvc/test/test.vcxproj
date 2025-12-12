@@ -68,7 +68,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Ws2_32.lib;pthreadVC2.lib;libclogger.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)build\$(SolutionName)\$(Platform)-libs\$(Configuration);$(ProjectDir)..\..\deps\pthreads-w32\Pre-built.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)build\$(SolutionName)\$(Platform)-libs\$(Configuration);$(ProjectDir)..\..\deps-msvc\pthreads-w32\Pre-built.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>"$(ProjectDir)update-$(Platform)_$(Configuration).bat" "$(SolutionDir)build\$(SolutionName)\$(Platform)-libs\$(Configuration)\"</Command>
@@ -94,7 +94,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Ws2_32.lib;pthreadVC2.lib;libclogger.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)build\$(SolutionName)\$(Platform)-libs\$(Configuration);$(ProjectDir)..\..\deps\pthreads-w32\Pre-built.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)build\$(SolutionName)\$(Platform)-libs\$(Configuration);$(ProjectDir)..\..\deps-msvc\pthreads-w32\Pre-built.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>"$(ProjectDir)update-$(Platform)_$(Configuration).bat" "$(SolutionDir)build\$(SolutionName)\$(Platform)-libs\$(Configuration)\"</Command>
