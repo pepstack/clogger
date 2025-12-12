@@ -100,7 +100,7 @@
     <ClCompile Include="..\..\src\clogger\rollingfile.c" />
     <ClCompile Include="..\..\src\clogger\shmmaplog.c" />
     <ClCompile Include="..\..\src\common\cstrbuf.c" />
-    <ClCompile Include="..\..\src\common\emergloh.c" />
+    <ClCompile Include="..\..\src\common\emerglog.c" />
     <ClCompile Include="..\..\src\common\md5sum.c" />
     <ClCompile Include="..\..\src\common\memalign.c" />
     <ClCompile Include="..\..\src\common\pathlib.c" />

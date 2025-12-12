@@ -48,7 +48,7 @@
     <ClCompile Include="..\..\src\common\cstrbuf.c">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\common\emergloh.c">
+    <ClCompile Include="..\..\src\common\emerglog.c">
       <Filter>common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\common\md5sum.c">
