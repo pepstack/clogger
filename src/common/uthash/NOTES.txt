@@ -1,0 +1,7 @@
+uthash
+
+https://troydhanson.github.io/uthash/
+
+https://github.com/troydhanson/uthash
+
+2024-10-26

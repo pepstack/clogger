@@ -1,0 +1,42 @@
+# Folders
+.spec-workflow/
+logs/
+tmp/
+temp/
+output/
+build/
+target/
+
+# doxygen generated
+docs/api/
+
+Debug/
+Release/
+
+libclogger-*/
+libclogger.a.*
+libclogger.so.*
+
+# Windows and MSVC
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+.vs/
+*.VC.db
+*.VC.opendb
+*.sdf
+
+# Python
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+
+# Build intermediate files
+*.exe
+*.a
+*.o
+*.log
+
+~*

@@ -1,0 +1,99 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+    "tasks": [
+        {
+            // 通过配置 launch.json 的 "preLaunchTask" 来预启动编译
+            "label": "🐛调试构建($ make debug)",
+            "type": "shell",
+            "command": "make debug",
+            "args": [
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+				"env": {
+					"MSYSTEM": "MINGW64"
+				}
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "always",  // silent: 编译时不在终端显示
+                "echo": false
+            }
+        },
+        {
+            "label": "🧹清理构建($ make clean)",
+            "type": "shell",
+            "command": "make clean",
+            "options": {
+                "cwd": "${workspaceFolder}",
+				"env": {
+					"MSYSTEM": "MINGW64"
+				}
+            },
+            "group": "build"
+        },
+        {
+            "label": "🔥清理全部($ make cleanall)",
+            "type": "shell",
+            "command": "make cleanall",
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "group": "build"
+        },
+        {
+            "label": "🚀发布构建($ make release)",
+            "type": "shell",
+            "command": "make release",
+            "options": {
+                "cwd": "${workspaceFolder}",
+				"env": {
+					"MSYSTEM": "MINGW64"
+				}
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "always",  // silent: 编译时不在终端显示
+                "echo": true
+            }
+        },
+        {
+            "label": "ℹ️显示目标($ make info)",
+            "type": "shell",
+            "command": "make info",
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "group": "build",
+        },
+        {
+            "label": "✏️修订版本($ revise.sh)",
+            "type": "shell",
+            "command": "./revise.sh",
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "group": "build",
+        },
+        {
+            "label": "📦打包项目($ package.sh)",
+            "type": "shell",
+            "command": "make cleanall && ./package.sh",
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "group": "build",
+        },
+        {
+            "label": "📊统计代码($ make loc)",
+            "type": "shell",
+            "command": "make loc",
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "group": "build",
+        },
+    ]
+}

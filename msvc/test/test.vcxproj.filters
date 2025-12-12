@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{b8d81ec0-347f-435a-ac16-d2ae83eb3609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{606bfe14-a5ce-4103-ac32-8da6c04f5ab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common\win32">
+      <UniqueIdentifier>{97a38552-b888-46da-9c86-61eead2735de}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\common\win32\syslog-client.c">
+      <Filter>src\common\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\win32\getopt_longw.c">
+      <Filter>src\common\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\win32\getoptw.c">
+      <Filter>src\common\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\test_clogger\test_clogger.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\cstrbuf.c">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\emergloh.c">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\pathlib.c">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\timeapi.c">
+      <Filter>src\common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\common\win32\syslog.h">
+      <Filter>src\common\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\win32\getopt_intw.h">
+      <Filter>src\common\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\win32\getoptw.h">
+      <Filter>src\common\win32</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="update-x64_Debug.bat" />
+    <None Include="update-x64_Release.bat" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,29 @@
+###############################################################################
+# Makefile.modules - 定义构建的模块和模块依赖
+#    此文件仅仅用于被主控 Makefile 包含。
+# Author: 350137278@qq.com
+# @since: 2025-08-30 13:22:09
+# @date: 2025-08-31 18:12:00
+###############################################################################
+# 根据需要更改下面的配置！使用 (:=) 立即展开。
+
+# 定义项目数组
+MODULES := common convd clogger log4tcl test_clogger test_log4tcl
+
+# 为每个项目定义目录变量
+common_DIR := $(SOURCE_PREFIX)/common
+convd_DIR := $(SOURCE_PREFIX)/convd
+clogger_DIR := $(SOURCE_PREFIX)/clogger
+log4tcl_DIR := $(SOURCE_PREFIX)/log4tcl
+test_clogger_DIR := $(SOURCE_PREFIX)/test_clogger
+test_log4tcl_DIR := $(SOURCE_PREFIX)/test_log4tcl
+
+# 定义项目依赖关系
+convd_DEPS := convd
+clogger_DEPS := common
+log4tcl_DEPS := clogger
+test_clogger_DEPS := clogger
+test_log4tcl_DEPS := log4tcl
+
+# 直接从 .clocignore 读取并生成排除参数
+CLOC_EXCLUDE_DIRS := $(shell awk '{printf "--exclude-dir=%s ", $$0}' .clocignore)

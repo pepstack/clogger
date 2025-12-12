@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="clogger">
+      <UniqueIdentifier>{d1bfa61a-0e19-4871-aaeb-d4825f2cc346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{0162a2d6-04a0-4c85-8848-8f8c4019eed6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common\win32">
+      <UniqueIdentifier>{1dac3445-de5d-4485-bf80-0e4ad409f5fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common\uthash">
+      <UniqueIdentifier>{c1f332e6-0cc0-44e4-8944-dc7b191bfaa3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\clogger\rollingfile.c">
+      <Filter>clogger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\clogger\shmmaplog.c">
+      <Filter>clogger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\win32\syslog-client.c">
+      <Filter>common\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\clogger\clogger.c">
+      <Filter>clogger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\clogger\loggerconf.c">
+      <Filter>clogger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\clogger\loggermgr.c">
+      <Filter>clogger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\cstrbuf.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\emergloh.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\md5sum.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\memalign.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\pathlib.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\randctx.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\readconf.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\ringbuf.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\ringbufst.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\rtclock.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\rwlock.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\shmipc.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\shmmbuf.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\smallregex.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\timeapi.c">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\clogger\rollingfile.h">
+      <Filter>clogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\clogger\shmmaplog.h">
+      <Filter>clogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\win32\syslog.h">
+      <Filter>common\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uthash\utarray.h">
+      <Filter>common\uthash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uthash\uthash.h">
+      <Filter>common\uthash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uthash\utlist.h">
+      <Filter>common\uthash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uthash\utringbuffer.h">
+      <Filter>common\uthash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uthash\utstack.h">
+      <Filter>common\uthash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uthash\utstring.h">
+      <Filter>common\uthash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\clogger\clogger_api.h">
+      <Filter>clogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\clogger\loggerconf.h">
+      <Filter>clogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\clogger\loggermgr.h">
+      <Filter>clogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\clogger\clogger_helper.h">
+      <Filter>clogger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\cpu_pause.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\cstrbuf.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\emerglog.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\md5sum.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\memalign.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\memapi.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\mscrtdbg.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\pathlib.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\platforms.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\randctx.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\readconf.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\ringbuf.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\ringbufst.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\rtclock.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\rwlock.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\shmipc.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\shmmbuf.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\smallregex.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\timeapi.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uatomic.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\unitypes.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\unsema.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\uthash_incl.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\clogger.cfg" />
+  </ItemGroup>
+</Project>

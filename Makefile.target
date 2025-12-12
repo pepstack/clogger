@@ -1,0 +1,258 @@
+#######################################################################
+# Makefile.target - 通用平台检测配置
+#   一般不需要更改此文件！
+# Author: 350137278@qq.com
+# Update: 2025-08-25
+#
+# Show all predefinitions of gcc
+#   $ gcc -posix -E -dM - < /dev/null
+#
+# (https://blog.csdn.net/10km/article/details/49023471)
+#
+# 包含此文件以获取平台检测变量
+# MinGW编译的程序不需要额外的运行时环境（除了Windows系统本身）
+#######################################################################
+# 获取当前文件所在目录作为项目根目录，并去掉末尾斜杠
+WORKSPACE_FOLDER := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+
+# 定义颜色代码
+COLOR_CLR = \033[0m
+COLOR_RED = \033[31m
+COLOR_GREEN = \033[32m
+COLOR_YELLOW = \033[33m
+COLOR_CYAN = \033[36m
+
+# 获取系统信息
+UNAME_S := $(shell uname -s)
+UNAME_M := $(shell uname -m)
+UNAME_P := $(shell uname -p)
+UNAME_R := $(shell uname -r)
+
+# 提取主要系统标识（去除版本信息）
+OS_TYPE := $(shell echo "$(UNAME_S)" | awk -F '-' '{print $$1}')
+
+# 初始化平台标志
+MINGW_FLAG := 0
+CYGWIN_FLAG := 0
+LINUX_FLAG := 0
+DARWIN_FLAG := 0
+WINDOWS_FLAG := 0
+UNIX_FLAG := 0
+
+# 检测操作系统类型
+ifeq ($(OS_TYPE),Linux)
+    LINUX_FLAG := 1
+    UNIX_FLAG := 1
+    OS_NAME := linux
+else ifeq ($(OS_TYPE),GNU/Linux)
+    LINUX_FLAG := 1
+    UNIX_FLAG := 1
+    OS_NAME := linux
+else ifeq ($(OS_TYPE),Darwin)
+    DARWIN_FLAG := 1
+    UNIX_FLAG := 1
+    OS_NAME := darwin
+else ifeq ($(OS_TYPE),CYGWIN_NT)
+    CYGWIN_FLAG := 1
+    UNIX_FLAG := 1
+    OS_NAME := cygwin
+else ifeq ($(OS_TYPE),MINGW32_NT)
+    MINGW_FLAG := 1
+    WINDOWS_FLAG := 1
+    OS_NAME := mingw
+else ifeq ($(OS_TYPE),MINGW64_NT)
+    MINGW_FLAG := 1
+    WINDOWS_FLAG := 1
+    OS_NAME := mingw
+else
+    $(warning Unsupported system: $(UNAME_S))
+    OS_NAME := unknown
+endif
+
+# 检测架构和位数
+ARCH := unknown
+BITS := 64
+
+ifneq ($(filter i386 i486 i586 i686,$(UNAME_M)),)
+    ARCH := x86
+    BITS := 32
+else ifneq ($(filter x86_64 amd64,$(UNAME_M)),)
+    ARCH := x86_64
+    BITS := 64
+else ifneq ($(filter armv6l armv7l,$(UNAME_M)),)
+    ARCH := arm
+    BITS := 32
+else ifneq ($(filter aarch64 arm64,$(UNAME_M)),)
+    ARCH := arm64
+    BITS := 64
+else ifneq ($(filter ppc,$(UNAME_M)),)
+    ARCH := powerpc
+    BITS := 32
+else ifneq ($(filter ppc64,$(UNAME_M)),)
+    ARCH := powerpc64
+    BITS := 64
+endif
+
+# 对于 macOS，使用更可靠的方法检测架构
+ifeq ($(DARWIN_FLAG),1)
+    # 尝试使用 sysctl 检测硬件架构
+    ifeq ($(ARCH),unknown)
+        SYSCTL_ARCH := $(shell sysctl -n hw.machine 2>/dev/null || echo unknown)
+        ifneq ($(filter x86_64,$(SYSCTL_ARCH)),)
+            ARCH := x86_64
+            BITS := 64
+        else ifneq ($(filter arm64,$(SYSCTL_ARCH)),)
+            ARCH := arm64
+            BITS := 64
+        else ifneq ($(filter i386,$(SYSCTL_ARCH)),)
+            ARCH := x86
+            BITS := 32
+        endif
+    endif
+endif
+
+# 对于 Linux，使用 getconf 检测位数
+ifeq ($(LINUX_FLAG),1)
+    ifeq ($(BITS),64)
+        # 验证是否是真正的 64 位系统
+        GETCONF_BITS := $(shell getconf LONG_BIT 2>/dev/null || echo 64)
+        ifeq ($(GETCONF_BITS),32)
+            BITS := 32
+        endif
+    endif
+endif
+
+# 设置源代码目录
+SOURCE_PREFIX := $(WORKSPACE_FOLDER)/src
+
+# 设置构建根目录
+BUILD_PREFIX := $(WORKSPACE_FOLDER)/build
+
+# 设置目标输出目录
+TARGET_PREFIX := $(BUILD_PREFIX)/$(OS_NAME)-$(ARCH)
+
+# 设置安装目录
+INSTALL_PREFIX ?= /usr/local
+
+# 构建配置（可被覆盖）
+DEFAULT_BUILD_TYPE ?= release
+
+# 设置平台特定的编译标志
+TARGET_CFLAGS :=
+TARGET_CXXFLAGS :=
+TARGET_LDFLAGS :=
+
+# 通用定义
+TARGET_CFLAGS += -D__$(shell echo $(OS_NAME) | tr 'a-z' 'A-Z')__
+TARGET_CXXFLAGS += -D__$(shell echo $(OS_NAME) | tr 'a-z' 'A-Z')__
+
+# 平台特定定义
+ifeq ($(LINUX_FLAG),1)
+    TARGET_CFLAGS += -D_POSIX_C_SOURCE=200809L
+    TARGET_CXXFLAGS += -D_POSIX_C_SOURCE=200809L
+else ifeq ($(DARWIN_FLAG),1)
+    TARGET_CFLAGS += -D__APPLE__ -D__DARWIN__ -D_DARWIN_C_SOURCE
+    TARGET_CXXFLAGS += -D__APPLE__ -D__DARWIN__ -D_DARWIN_C_SOURCE
+else ifeq ($(CYGWIN_FLAG),1)
+    ifeq ($(BITS),64)
+        TARGET_CFLAGS += -D__CYGWIN64__ -D_WIN32_WINNT=0x0601 -DWINVER=0x0601 -DNTDDI_VERSION=0x06010000 -D_POSIX_C_SOURCE=200809L
+        TARGET_CXXFLAGS += -D__CYGWIN64__ -D_WIN32_WINNT=0x0601 -DWINVER=0x0601 -DNTDDI_VERSION=0x06010000 -D_POSIX_C_SOURCE=200809L
+    else
+        TARGET_CFLAGS += -D__CYGWIN32__ -D_POSIX_C_SOURCE=200809L
+        TARGET_CXXFLAGS += -D__CYGWIN32__ -D_POSIX_C_SOURCE=200809L
+    endif
+else ifeq ($(MINGW_FLAG),1)
+    # 确保在包含windows.h之前定义_WIN32_WINNT
+    TARGET_CFLAGS += -D_WIN32_WINNT=0x0601 -DWINVER=0x0601 -DNTDDI_VERSION=0x06010000 -D_POSIX_C_SOURCE=200809L
+    TARGET_CXXFLAGS += -D_WIN32_WINNT=0x0601 -DWINVER=0x0601 -DNTDDI_VERSION=0x06010000 -D_POSIX_C_SOURCE=200809L
+    ifeq ($(BITS),64)
+        TARGET_CFLAGS += -D__MINGW64__ -D_M_AMD64
+        TARGET_CXXFLAGS += -D__MINGW64__ -D_M_AMD64
+    else
+        TARGET_CFLAGS += -D__MINGW32__ -D_M_IX86
+        TARGET_CXXFLAGS += -D__MINGW32__ -D_M_IX86
+    endif
+
+    # Windows 平台可能需要额外的链接库
+    TARGET_LDFLAGS += -lws2_32
+endif
+
+ifeq ($(BITS),64)
+    TARGET_CFLAGS += -D_FILE_OFFSET_BITS=64
+    TARGET_CXXFLAGS += -D_FILE_OFFSET_BITS=64
+endif
+
+# 架构特定定义
+ifneq ($(ARCH),unknown)
+    TARGET_CFLAGS += -DARCH_$(shell echo $(ARCH) | tr 'a-z' 'A-Z')
+    TARGET_CXXFLAGS += -DARCH_$(shell echo $(ARCH) | tr 'a-z' 'A-Z')
+endif
+
+# 位数特定定义
+TARGET_CFLAGS += -DBITS_$(BITS)
+TARGET_CXXFLAGS += -DBITS_$(BITS)
+
+# 设置编译器
+COMPILER_C := gcc -std=c11
+COMPILER_CXX := g++ -std=c++11
+
+# 对于 macOS，使用 clang 作为默认编译器
+ifeq ($(DARWIN_FLAG),1)
+    COMPILER_C := clang
+    COMPILER_CXX := clang++
+endif
+
+# 定义打印变量的函数
+define func_print_vars
+	@echo "=== 平台检测结果 ==="
+	@echo "系统: $(UNAME_S)"
+	@echo "机器架构: $(UNAME_M)"
+	@echo "处理器: $(UNAME_P)"
+	@echo "内核版本: $(UNAME_R)"
+	@echo "操作系统类型: $(OS_TYPE)"
+	@echo "平台名称: $(OS_NAME)"
+	@echo "架构: $(ARCH)"
+	@echo "位数: $(BITS)"
+	@echo
+	@echo "=== 平台标志 ==="
+	@echo "MINGW_FLAG: $(MINGW_FLAG)"
+	@echo "CYGWIN_FLAG: $(CYGWIN_FLAG)"
+	@echo "LINUX_FLAG: $(LINUX_FLAG)"
+	@echo "DARWIN_FLAG: $(DARWIN_FLAG)"
+	@echo "WINDOWS_FLAG: $(WINDOWS_FLAG)"
+	@echo "UNIX_FLAG: $(UNIX_FLAG)"
+	@echo
+	@echo "=== 编译选项 ==="
+	@echo "TARGET_CFLAGS: $(TARGET_CFLAGS)"
+	@echo "TARGET_CXXFLAGS: $(TARGET_CXXFLAGS)"
+	@echo "TARGET_LDFLAGS: $(TARGET_LDFLAGS)"
+	@echo "COMPILER_C: $(COMPILER_C)"
+	@echo "COMPILER_CXX: $(COMPILER_CXX)"
+	@echo "INSTALL_PREFIX: $(INSTALL_PREFIX)"
+	@echo "=== 目录结构 ==="
+	@echo "WORKSPACE_FOLDER: $(WORKSPACE_FOLDER)"
+	@echo "SOURCE_PREFIX: $(SOURCE_PREFIX)"
+	@echo "TARGET_PREFIX: $(TARGET_PREFIX)"
+	@echo "==================="
+endef
+
+# 添加帮助目标
+.PHONY: help
+help:
+	$(call func_print_vars)
+	@echo "可用目标:"
+	@echo "  help - 显示此帮助信息"
+	@echo
+	@echo "此 Makefile.target 提供平台检测功能，通常被其他 Makefile 包含使用。"
+	@echo "包含后，您可以使用以下变量:"
+	@echo "  OS_NAME COMPILER_C COMPILER_CXX ARCH BITS TARGET_CFLAGS TARGET_CXXFLAGS TARGET_LDFLAGS"
+	@echo "  SOURCE_PREFIX TARGET_PREFIX INSTALL_PREFIX"
+	@echo "以及各种平台标志变量:"
+	@echo "  MINGW_FLAG CYGWIN_FLAG LINUX_FLAG DARWIN_FLAG WINDOWS_FLAG UNIX_FLAG"
+
+# 如果此文件被直接调用，设置默认目标为 help
+ifeq (,$(filter-out help,$(MAKECMDGOALS)))
+    ifeq (,$(MAKECMDGOALS))
+        .DEFAULT_GOAL := help
+    endif
+endif

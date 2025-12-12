@@ -1,0 +1,37 @@
+{
+    // c_cpp_properties.json
+    // 在 VSCode 状态栏选择: MINGW64_Config 或 LINUX64_Config
+    "version": 4,
+    "configurations": [
+        {
+            "name": "MINGW64_Config",
+            "windowsSdkVersion": "10.0.18362.0",
+            "compilerPath": "${env:MSYS2_ROOT_BASH}/mingw64/bin/gcc.exe",
+            "includePath": [
+                "${env:MSYS2_ROOT_BASH}/mingw64/include",
+                "${workspaceFolder}/src/**"
+            ],
+            "defines": [
+                "DEBUG",
+                "_DEBUG",
+                "__MINGW64__"
+            ],
+            "intelliSenseMode": "gcc-x64"
+        },
+        {
+            "name": "LINUX64_Config",
+            "compilerPath": "/usr/bin/gcc",
+            "includePath": [
+                "/usr/include",
+                "/usr/local/include",
+                "${workspaceFolder}/src/**"
+            ],
+            "defines": [
+                "DEBUG",
+                "_DEBUG",
+                "__linux__"
+            ],
+            "intelliSenseMode": "gcc-x64"
+        }
+    ]
+}

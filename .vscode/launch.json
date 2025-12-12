@@ -1,0 +1,120 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    //   https://code.visualstudio.com/docs/editor/variables-reference
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) MINGW64: test_clogger",
+            "type": "cppdbg",
+            "request": "launch",
+            "targetArchitecture": "x64",
+            "program": "${workspaceFolder}/build/mingw-x86_64/libs/test_clogger",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "internalConsoleOptions": "neverOpen",
+            "MIMode": "gdb",
+            "miDebuggerPath": "${env:MSYS2_ROOT_BASH}/mingw64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "enable pretty printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "🐛调试构建($ make debug)",
+        },
+		{
+            "name": "(gdb) LINUX64: test_clogger",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/linux-x86_64/libs/test_clogger",
+            "targetArchitecture": "x64",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "enable pretty printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "🐛调试构建($ make debug)",
+        },
+        {
+            "name": "(gdb) LINUX64: Debug test_log4tcl",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/linux-x86_64/libs/test_log4tcl",
+            "targetArchitecture": "x64",
+            "args": [
+                "${workspaceFolder}/src/test_log4tcl/debug.tcl"
+            ],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "告诉GDB在fork后跟踪子进程",
+                    "text": "set follow-fork-mode child",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "🐛调试构建($ make debug)",
+        },
+        {
+            "name": "(gdb) LINUX64: Debug liblog4tcl",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/tclsh",
+            "args": [
+                "${workspaceFolder}/src/log4tcl/debug.tcl"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}:/usr/local/lib"
+                },
+                {
+                    "name": "TCLLIBPATH",
+                    "value": "${workspaceFolder}"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "🐛调试构建($ make debug)"
+        }
+    ]
+}

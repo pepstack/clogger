@@ -1,0 +1,21 @@
+# 顶级配置文件
+root = true
+
+[*]  # 应用于所有文件
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# 所有编程语言统一设置
+[*.{c,cpp,h,hpp,cc,java,py,cs,js,ts,php,go,rs,s,asm}]
+indent_style = space
+indent_size = 4
+
+# Markdown 文件特殊设置
+[*.{md,markdown}]
+trim_trailing_whitespace = false  # Markdown 行尾空格有意义
+
+# Makefile 特殊设置
+[Makefile]
+indent_style = tab  # Makefile 必须使用制表符

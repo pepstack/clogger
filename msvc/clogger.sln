@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libclogger", "libclogger\libclogger.vcxproj", "{E05204BE-7209-4561-9972-16FA37A31772}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{D82FE826-A474-4400-A890-91F10DFFD56D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E05204BE-7209-4561-9972-16FA37A31772} = {E05204BE-7209-4561-9972-16FA37A31772}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E05204BE-7209-4561-9972-16FA37A31772}.Debug|x64.ActiveCfg = Debug|x64
+		{E05204BE-7209-4561-9972-16FA37A31772}.Debug|x64.Build.0 = Debug|x64
+		{E05204BE-7209-4561-9972-16FA37A31772}.Release|x64.ActiveCfg = Release|x64
+		{E05204BE-7209-4561-9972-16FA37A31772}.Release|x64.Build.0 = Release|x64
+		{D82FE826-A474-4400-A890-91F10DFFD56D}.Debug|x64.ActiveCfg = Debug|x64
+		{D82FE826-A474-4400-A890-91F10DFFD56D}.Debug|x64.Build.0 = Debug|x64
+		{D82FE826-A474-4400-A890-91F10DFFD56D}.Release|x64.ActiveCfg = Release|x64
+		{D82FE826-A474-4400-A890-91F10DFFD56D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C90076F6-27F7-4DD6-BA16-ACE9A087F9CC}
+	EndGlobalSection
+EndGlobal
