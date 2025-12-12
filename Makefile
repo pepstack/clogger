@@ -76,10 +76,6 @@ $(foreach repo,$(MODULES),$(eval $(call install_repo_template,$(repo))))
 $(foreach repo,$(MODULES),$(eval $(call uninstall_repo_template,$(repo))))
 $(foreach repo,$(MODULES),$(eval $(call loc_repo_template,$(repo))))
 
-loc-common: $(common_DIR)
-	@printf "$(COLOR_CYAN)[统计 common 代码行数...]$(COLOR_CLR)\n"
-	@find $(common_DIR) -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.cxx" | xargs wc -l | tail -1
-
 loc:
 	@echo 执行统计代码命令: cloc $(SOURCE_PREFIX) $(CLOC_EXCLUDE_DIRS)
 	@cloc $(SOURCE_PREFIX) $(CLOC_EXCLUDE_DIRS)
